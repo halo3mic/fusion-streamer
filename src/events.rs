@@ -6,6 +6,7 @@ pub enum FusionEvent {
     OrderCreated(OrderCreatedEvent),
     OrderBalanceChange(OrderBalanceChangeEvent),
     OrderAllowanceChange(OrderAllowanceChangeEvent),
+    OrderBalanceOrAllowanceChange(OrderBalanceOrAllowanceChangeEvent),
     OrderInvalid(OrderInvalidEvent),
     OrderCancelled(OrderCancelledEvent),
     OrderFilled(OrderFilledEvent),
@@ -45,6 +46,15 @@ pub struct OrderBalanceChangeEvent {
 pub struct OrderAllowanceChangeEvent {
     order_hash: String,
     remaining_maker_amount: String,
+    allowance: String,
+}
+
+#[derive(Deserialize, Serialize, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct OrderBalanceOrAllowanceChangeEvent {
+    order_hash: String,
+    remaining_maker_amount: String,
+    balance: String,
     allowance: String,
 }
 
